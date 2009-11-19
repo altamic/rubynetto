@@ -16,7 +16,7 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     if @participant.save
-      flash[:notice] = "Successfully created participant."
+      flash[:notice] = "Iscritto eliminato correttamente."
       redirect_to @participant
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class ParticipantsController < ApplicationController
   
   def update
     if @participant.update_attributes(params[:participant])
-      flash[:notice] = "Successfully updated participant."
+      flash[:notice] = "Iscritto aggiornato correttamente."
       redirect_to @participant
     else
       render :action => 'edit'
@@ -37,12 +37,12 @@ class ParticipantsController < ApplicationController
   
   def destroy
     @participant.destroy
-    flash[:notice] = "Successfully destroyed participant."
+    flash[:notice] = "Iscritto eliminato correttamente."
     redirect_to participants_url
   end
   
   private
   def find_participant
-    @event = Participant.find(params[:id])
+    @participant = Participant.find(params[:id])
   end
 end

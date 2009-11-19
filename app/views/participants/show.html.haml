@@ -1,0 +1,10 @@
+%h1
+  = h @participant.name
+  = link_to image_tag('/images/icons/edit.png'), edit_participant_path(@participant) if admin?
+%p
+  %strong Email:
+  = h @participant.email
+%p
+  %strong Telefono:
+  = h @participant.phone
+%p

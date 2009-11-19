@@ -1,0 +1,18 @@
+- form_for @participant do |f|
+  %p
+    = f.label :name, "Nome"
+    = f.text_field :name
+  %p
+    = f.label :email, "Email"
+    = f.text_field :email
+  %p
+    = f.label :phone, "Telefono"
+    = f.text_field :phone
+    %br/
+  %p= f.submit "Invia"
+%br/
+%p
+  %b Nota
+  \: Email e telefono non saranno mostrati
+  %br/
+  ma usati eventualmente solo in caso di necessit&agrave;
