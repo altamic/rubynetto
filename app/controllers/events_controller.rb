@@ -1,5 +1,4 @@
 class EventsController < ApplicationController
-  before_filter :authenticate, :except => %w(index show)
   before_filter :find_event, :only => %w(show edit update destroy)
 
   def index
@@ -69,7 +68,7 @@ class EventsController < ApplicationController
     end
   end
   
-  protected
+  private
   def find_event
     @event = Event.find(params[:id])
   end

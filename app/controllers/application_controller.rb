@@ -5,7 +5,9 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 
   # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery
+  protect_from_forgery 
+  
+  before_filter :authenticate, :except => %w(index show)
 
   def login
     authenticate and redirect_to root_path

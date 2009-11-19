@@ -1,4 +1,5 @@
 class ParticipantsController < ApplicationController
+  skip_before_filter :authenticate
   before_filter :find_participant, :only => %w(show edit update destroy)
   
   def index
@@ -40,9 +41,8 @@ class ParticipantsController < ApplicationController
     redirect_to participants_url
   end
   
-  protected
+  private
   def find_participant
     @event = Participant.find(params[:id])
   end
-
 end
