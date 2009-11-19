@@ -1,4 +1,5 @@
 class TalksController < ApplicationController
+  before_filter :authenticate, :except => %w(index show)
   before_filter :find_event
   before_filter :find_talk, :only => %w(edit update destroy)
 
