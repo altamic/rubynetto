@@ -1,0 +1,27 @@
+%h1 Programma di Lavoro
+%table
+  %tr
+    %th.rounded-top-left Incontro
+    %th Ora Inizio
+    %th Ora Fine
+    %th.rounded-top-right
+  - @events.each do |event|
+    %tr
+      %td
+        = link_to event.name, event
+        %br
+        %small
+          (
+          = "#{event.starts_at.strftime("%d %b")}"
+          )
+      %td= h event.starts_at.to_s(:hour24)
+      %td
+        = h event.ends_at.to_s(:hour24)
+      %td
+        - if admin?
+          = link_to image_tag('/images/icons/details.png'), event_talks_path(event)
+          = link_to image_tag('/images/icons/edit.png'), edit_event_path(event)
+          = link_to image_tag('/images/icons/delete.png'), event, :confirm => 'Confermi di voler eliminare?', :method => :delete
+- if admin?
+  %p
+    = link_to 'Nuovo Incontro', new_event_path

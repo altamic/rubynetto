@@ -1,0 +1,10 @@
+%h1
+  Nuova Lezione per 
+  ="#{link_to @event.name, edit_event_path(@event)}"
+= error_messages_for :talk
+- form_for([@event, @talk]) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  %p
+    = f.submit "Salva"
+    |
+    ="#{link_to 'Annulla', event_talks_path(@event)}"

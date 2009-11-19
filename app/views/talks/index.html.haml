@@ -1,0 +1,28 @@
+%h1
+  = link_to "&laquo; Indietro", @event
+  \&mdash; 
+  ="#{@event.name}"
+  %small
+    (
+    ="#{@event.starts_at.strftime("%d %b")}"
+    )
+%table
+  %tr
+    %th.rounded-top-left Orari
+    %th Argomenti
+    %th Docenti
+    %th.rounded-top-right
+  - for talk in @talks
+    %tr
+      %td
+        = h talk.starts_at.to_s(:hour24)
+        \&mdash; 
+        = "#{h talk.ends_at.to_s(:hour24)}"
+      %td= simple_format(h talk.topic)
+      %td= h talk.speaker
+      %td
+        = link_to image_tag('/images/icons/edit.png'), edit_event_talk_path(@event, talk)
+        = link_to image_tag('/images/icons/delete.png'), [@event, talk], :confirm => 'Confermi di voler eliminare?', :method => :delete
+- if session[:admin]
+  %p
+    = link_to 'Nuova Lezione', new_event_talk_path(@event)

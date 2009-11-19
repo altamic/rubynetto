@@ -1,0 +1,10 @@
+%h1
+  Modifica Lezione del 
+  ="#{link_to @event.name, edit_event_path(@event)} (#{@event.starts_at.strftime("%d %b")} ore #{@talk.starts_at.to_s(:time)})"
+= error_messages_for :talk
+- form_for([@event, @talk]) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  %p
+    = f.submit "Aggiorna"
+    |
+    ="#{link_to 'Annulla', event_talks_path(@event)}"

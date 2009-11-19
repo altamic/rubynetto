@@ -1,0 +1,123 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %title rubynetto - Una fresca sorgente di lezioni su Ruby e Rails
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "content-type"}/
+    = javascript_include_tag :defaults, :cache => true
+    = stylesheet_link_tag 'application', :cache => true
+  %body
+    #main_header
+      #header
+        %ul
+          %li
+            %a.home{:href => "http://cataniarb.org"} Home
+          %li
+            %a.user{:href => "/admin", :title => "Amministrazione"} Amministrazione
+          %li
+            %a.contact{:href => "http://groups.google.com/group/catania-ruby-user-group"} Contattaci
+        %h1
+          rubynetto
+        %h2
+          Una fresca sorgente di lezioni su Ruby e Rails
+        %a{:href => "/", :title => "Home Page"}
+          %img{:alt => "rubynetto", :border => "0px", :src => "/images/rubynetto_logo.png", :title => "rubynetto logo", :alt => "rubynetto logo"}/
+        #join
+          = link_to "Clicca per #{content_tag :span, 'Iscriverti'}", new_participant_path
+        %ul.navigation
+          - Event.find(:all, :order => 'starts_at').each do |event|
+            %li= link_to_unless_current event.name, event_path(event)
+          - if session[:admin]
+            %li.right= link_to 'Log Out', logout_path
+    #container
+      #page
+        %p{:style => "color: white; background:green; text-align:center;"}= flash[:notice]
+        = yield
+        %br/
+        #what
+          %h2
+            Cosa
+            %span &egrave; il rubynetto?
+          %p 
+            Un corso per incominciare l'uso del linguaggio di programmazione 
+            %a{:href => 'http://ruby-lang.org', :title => 'Sito Ufficiale Ruby'}Ruby 
+            e del framework 
+            %a{:href => 'http://rubyonrails.org', :title => 'Sito Ufficiale Rails'}Rails
+            , rivolto a chi abbia una minima esperienza con la programmazione.
+          %p
+            Tra gli obiettivi del corso c'&egrave; quello di dare i primi rudimenti a chi intenda applicarsi su ruby, perch&eacute; ne condivide la 
+            %a{:href => ''}
+              filosofia 
+            ed essere nelle condizioni di programmare in modo semplice ed efficace.
+
+          %p
+            Il corso &egrave; organizzato da 
+            %a{:href => 'http://pergrandiepc.com/', :title=>"Blog Personale di Alex"}Alex
+            \,
+            %a{:href => 'http://twitter.com/miky_altamore', :title=>"Miky su Twitter"}Miky 
+            ed
+            %a{:href => ''}Enzo
+            ed ha un costo di &euro; 10 a persona.
+        #where
+          %h2
+            Dove
+            %span a Catania
+          %h3
+            Presso il GAPA,
+            %br/
+            in via Cordai, 47
+          %p
+            Nello storico quartiere di S. Cristoforo a Catania, il centro
+            %acronym{:title => "Giovani Assolutamente Per Agire"}
+              %a{:href => "http://www.associazionegapa.org"} GAPA
+            ,  ospita presso il proprio laboratorio informatico il corso offerto dal
+            %a{:href => "http://cataniarb.org"} Catania Ruby User Group
+            \.
+          %ul
+            %li
+              pede. Sedr fringilla, quam,
+              %a uttellus textfacilisisconsequ, elitaugu
+            %li
+              pede. Sedr fringilla, quam,
+              %a uttellus textfacilisisconsequ, elitaugu
+            %li
+              pede. Sedr fringilla, quam
+              %a suscipit tellus, at iaculisant ante eget massa. Vestibulu facilisis.
+        #when
+          %h2
+            Quando
+            %span 1-4 Dicembre 2009
+          %h3
+            4 incontri a partire dal
+            %br
+            1 Dicembre 2009
+          %p Il corso sar&agrave; sospeso nel caso non si raggiunga la soglia minima di 10 partecipanti.
+          %ul
+            %li
+              %a{:href => ""} culis ante congue
+            %li
+              %a{:href => ""} vel,uar risus. Aenean a
+            %li
+              %a{:href => ""} pede. Sedr fringilla,
+            %li
+              %a{:href => ""} quam uttellus text
+            %li
+              %a{:href => ""} facilisisconsequat,
+            %li
+              %a{:href => ""} elitaugu suscipit tellus,
+            %li
+              %a{:href => ""} at iaculisant ante eget
+            %li
+              %a{:href => ""} massa.velit,
+        %br.blank/
+    #main_footer
+      #footer
+        %ul
+          %li
+            Un'iniziativa del
+            %a{:href => "http://cataniarb.org"} Catania Ruby User Group
+          %li
+            Template by:
+            %a{:href => "http://www.templateworld.com/"} Template World
+          %li
+            Design by
+            %a{:href => "http://convergent.it/"} Convergent.it

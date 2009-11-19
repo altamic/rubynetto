@@ -1,0 +1,25 @@
+%h1
+  Programma Lezioni del 
+  ="#{@event.name} (#{@event.starts_at.to_s(:short)})"
+- if @event.talks.any?
+  %table
+    %tr
+      %th.rounded-top-left Orari
+      %th Argomenti
+      %th Docente
+      %th.rounded-top-right
+        - if admin?
+          = link_to image_tag('/images/icons/edit.png'), event_talks_path(@event)
+    - @event.talks.each do |talk|
+      %tr
+        %td
+          = h talk.starts_at.to_s(:hour24)
+          \&mdash; 
+          = "#{h talk.ends_at.to_s(:hour24)}"
+        %td= simple_format(h talk.topic)
+        %td= h talk.speaker
+- else
+  %p
+    Non ci sono ancora lezioni in programma.
+    - if admin?
+      = link_to image_tag('/images/icons/add.png'), event_talks_path(@event)

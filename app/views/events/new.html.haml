@@ -1,0 +1,8 @@
+%h2 Nuovo Incontro
+= error_messages_for :event
+- form_for(@event) do |f|
+  = render :partial => 'form', :locals => { :f => f }
+  %p
+    = f.submit "Salva"
+    |
+    ="#{link_to 'Annulla', events_path}"

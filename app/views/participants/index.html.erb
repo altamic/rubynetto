@@ -1,0 +1,26 @@
+<h1>Elenco Iscritti</h1>
+
+<% if  @participants.any? %>
+<div style="margin-left:40px; margin-bottom:30px">
+  <ul>
+    <% for participant in @participants %>
+      <li>
+        <%=h participant.name %>
+        <% if admin? %>
+        <% unless participant.email.blank? %>
+          <tt><%=h "<#{participant.email}>"  %></tt>
+        <% end %>
+        <%=h "Tel: #{participant.phone}" unless participant.phone.blank? %>
+        <%= link_to image_tag('/images/icons/edit.png'), edit_participant_path(participant) %>
+        <%= link_to image_tag('/images/icons/delete.png'), participant, :confirm => 'Confermi l''elminazione?', :method => :delete %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% else %>
+  <p>Al momento non ci sono iscritti</p>
+<% end %>
+
+
+<p><%= link_to "Iscriviti", new_participant_path %></p>

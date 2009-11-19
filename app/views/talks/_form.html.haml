@@ -1,0 +1,12 @@
+%p
+  = f.label :starts_at, 'Orario Inizio'
+  = f.datetime_select :starts_at, :default => @event.starts_at
+%p
+  = f.label :ends_at, 'Orario Fine'
+  = f.datetime_select :ends_at, :default => @event.starts_at
+%p
+  = f.label :topic, "Argomento"
+  = f.text_area :topic, :size => '42x10'
+%p
+  = f.label :speaker, "Docente"
+  = f.text_field :speaker
