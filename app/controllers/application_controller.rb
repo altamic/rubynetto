@@ -10,13 +10,13 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate, :except => %w(index show)
 
   def login
-    authenticate and redirect_to :back
+    authenticate and redirect_to root_url
   end
 
   def logout
     session[:admin] = false
     reset_session
-    redirect_to :back
+    redirect_to root_url
   end
 
   def authenticate
