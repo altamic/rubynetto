@@ -16,7 +16,7 @@ class ParticipantsController < ApplicationController
   def create
     @participant = Participant.new(params[:participant])
     if @participant.save
-      flash[:notice] = "Iscritto eliminato correttamente."
+      flash[:notice] = "Iscritto creato correttamente."
       redirect_to @participant
     else
       render :action => 'new'
